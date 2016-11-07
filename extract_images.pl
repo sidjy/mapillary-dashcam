@@ -90,6 +90,6 @@ while ( my $name = shift @files ) {
 
 print "Images have been extracted. Now you can use mapillary_tools (do not forget to export global MAPILLARY_ variable) :\n";
 print "remove_duplicates.py $video_path/img/F/ $video_path/dup/\n";
-print "to remove the duplicates, followed by\n";
+print "sequence_split.py $video_path/img/F/\n";
 print "upload_with_authentication.py $video_path/img/F/\n";
-
+print "Do not forget to do the same with rear views\n";
