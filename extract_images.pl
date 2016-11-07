@@ -1,5 +1,10 @@
 #!/usr/bin/perl
 
+# please specify the path where you have the MP4 video files coming from the dashcam
+# the extracted images will be placed in subdirectories : $video_path/img/F and $video_path/img/R
+$video_path = '/media/Downloads/dashcam';
+
+
 sub extract_img  {
 
 my ($mp4name) = @_;
@@ -66,13 +71,12 @@ while (my $row = <$fh>) {
 			print "Invalid GPS checksum\n";
 		}
 
-
 	}
 }
 }
 
 
-chdir('/media/Downloads/dashcam');
+chdir($video_path) || die "Cannot go to $video_path\n";
 my $data_dir='.'; opendir( DATA_DIR, $data_dir) || die "Cannot open $data_dir\n";
 my @files = sort readdir(DATA_DIR);
 
@@ -84,19 +88,8 @@ while ( my $name = shift @files ) {
         }
 }
 
-
-$ENV{MAPILLARY_SIGNATURE_HASH}='';
-$ENV{MAPILLARY_PERMISSION_HASH}='';
-$ENV{MAPILLARY_USERNAME}='';
-$ENV{MAPILLARY_EMAIL}='';
-$ENV{MAPILLARY_PASSWORD}='';
-
-
-my $dedupcmd = "/usr/bin/python /home/pi/dashcam/map/mapillary_tools/python/remove_duplicates.py /media/Downloads/dashcam/img/F/ /media/Downloads/dashcam/dup/";
-print "$dedupcmd\n";
-#system ($dedupcmd);
-
-my $upcmd = "/home/pi/dashcam/mapillary_tools/python/upload_with_authentication.py /home/pi/dashcam/img/";
-print "$upcmd\n";
-#system ($upcmd);
+print "Images have been extracted. Now you can use mapillary_tools (do not forget to export global MAPILLARY_ variable) :\n";
+print "remove_duplicates.py $video_path/img/F/ $video_path/dup/\n";
+print "to remove the duplicates, followed by\n";
+print "upload_with_authentication.py $video_path/img/F/\n";
 
