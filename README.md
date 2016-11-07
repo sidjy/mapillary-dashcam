@@ -5,3 +5,8 @@ Prerequisites :
 - perl
 - exiftool
 - avconv
+
+Usage :
+- Copy all MP4 files from your dashcam to a (large) directory
+- Edit and change $video_path
+- Launch and wait : you will get geotagged images that can be uploaded to mapillary
