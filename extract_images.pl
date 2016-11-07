@@ -77,6 +77,12 @@ while (my $row = <$fh>) {
 
 
 chdir($video_path) || die "Cannot go to $video_path\n";
+
+# check for subdirs
+unless (-d $video_path."/img/F" && -d $video_path."/img/R") {
+  die "Missing $video_path."/img/F" or $video_path."/img/R" subdirectories\n";
+}
+
 my $data_dir='.'; opendir( DATA_DIR, $data_dir) || die "Cannot open $data_dir\n";
 my @files = sort readdir(DATA_DIR);
 
