@@ -1,5 +1,7 @@
 # mapillary-dashcam
 
+Some scripts to be used with mapillary-tools to help uploading from Thinkware F770 dashcam
+
 Prerequisites :
 - mapillary_tools (see https://github.com/mapillary/mapillary_tools)
 - perl
