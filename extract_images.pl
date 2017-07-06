@@ -2,7 +2,7 @@
 
 # please specify the path where you have the MP4 video files coming from the dashcam
 # the extracted images will be placed in subdirectories : $video_path/img/F and $video_path/img/R
-$video_path = '/media/Downloads/dashcam';
+$video_path = '/home/pi/dashcam/files';
 
 
 sub extract_img  {
@@ -19,8 +19,9 @@ my $prefix = $1;
 
 #remove and recreate temporary subtitle file containing GPS and gsensor data
 unlink 'tmp.srt';
-my $srtcmd = "avconv -nostats -loglevel 0 -i $mp4name -an -vn -scodec copy tmp.srt";
+my $srtcmd = "avconv -nostats -loglevel 0 -i $mp4name -an -vn -scodec copy -f data tmp.srt";
 system($srtcmd);
+print "$srtcmd  \n";
 
 #new line separator
 local $/ = chr(0);
@@ -88,7 +89,7 @@ my @files = sort readdir(DATA_DIR);
 
 while ( my $name = shift @files ) {
         if ($name =~ /^REC_.*(F|R).MP4/) {
-#                print "$name : $1\n";
+                print "$name : $1\n";
 		extract_img($name);
 
         }
