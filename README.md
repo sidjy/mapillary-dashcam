@@ -6,7 +6,7 @@ Prerequisites :
 - mapillary_tools (see https://github.com/mapillary/mapillary_tools)
 - perl
 - exiftool
-- avconv
+- avconv (see libav-tools on debian)
 
 Usage :
 - Copy all MP4 files from your dashcam to a (large) directory
